@@ -6,5 +6,5 @@ public class Team {
     private Long countryId;
     private Long governorateId;
     private Long cityId;
-    
+    private Long presidentId;
 }
