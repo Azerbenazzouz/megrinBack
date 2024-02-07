@@ -1,6 +1,6 @@
 package com.azer.megrinBack.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,7 @@ public class CityController {
     // @Autowired
     private final CityService cityService;
 
-    @Autowired
+    // @Autowired
     public CityController(CityService cityService) {
         this.cityService = cityService;
     }    
