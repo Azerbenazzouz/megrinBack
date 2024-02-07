@@ -3,6 +3,7 @@ package com.azer.megrinBack.service;
 import java.util.List;
 
 import com.azer.megrinBack.entities.UserDTO;
+import com.azer.megrinBack.exception.EmailExist;
 import com.azer.megrinBack.entities.User;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class UserService {
     public User register(UserDTO user) {
         userRepository.existsByUserEmail(user.getEmail()).ifPresent(
             u -> {
-                throw new IllegalStateException("Email already exists");
+                throw new EmailExist("Email already exists");
             }
         );
 
@@ -38,5 +39,7 @@ public class UserService {
         userRepository.save(newUser);
         return newUser;
     }
+
+    
 
 }
