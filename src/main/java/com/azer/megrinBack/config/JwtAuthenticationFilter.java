@@ -26,7 +26,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
     private final JwtService jwtService;
     private final UserDetailsService userDeatailsService;
 
-    @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(
         @NonNull HttpServletRequest request, 

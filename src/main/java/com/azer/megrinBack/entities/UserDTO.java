@@ -1,5 +1,7 @@
 package com.azer.megrinBack.entities;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,22 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDTO {
     private String username;
-    private String password;
     private String email;
     private String phone;
     private String address;
     private Long countryId;
     private Long governorateId;
     private Long cityId;
-    private int age;
+    private LocalDate dateOfBirth;
     private Role role;
-
-    public UserDTO(String username, String password, String email, String phone, Role role) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.role = role;
-    }
 
 }

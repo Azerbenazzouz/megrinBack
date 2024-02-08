@@ -1,5 +1,6 @@
 package com.azer.megrinBack.entities;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -48,13 +50,15 @@ public class User implements UserDetails{
     private Long countryId;
     private Long governorateId;
     private Long cityId;
+    private LocalDate dateOfBirth;
+    @Transient
     private int age;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
 
-    public User(String username, String password, String email, String phone, String address, Long countryId, Long governorateId, Long cityId, int age, Role role) {
+    public User(String username, String password, String email, String phone, String address, Long countryId, Long governorateId, Long cityId, Role role) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -63,7 +67,6 @@ public class User implements UserDetails{
         this.countryId = countryId;
         this.governorateId = governorateId;
         this.cityId = cityId;
-        this.age = age;
         this.role = role;
     }
 
@@ -111,4 +114,7 @@ public class User implements UserDetails{
         return true;
     }
 
+    public Integer getAge() {
+        return LocalDate.now().getYear() - dateOfBirth.getYear();
+    }
 }

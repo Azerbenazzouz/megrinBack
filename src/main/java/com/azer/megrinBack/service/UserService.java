@@ -1,8 +1,8 @@
 package com.azer.megrinBack.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
-import com.azer.megrinBack.entities.UserDTO;
 import com.azer.megrinBack.exception.EmailExist;
 import com.azer.megrinBack.entities.User;
 import org.springframework.stereotype.Service;
@@ -21,23 +21,15 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-    // register
-    public User register(UserDTO user) {
-        userRepository.existsByUserEmail(user.getEmail()).ifPresent(
-            u -> {
-                throw new EmailExist("Email already exists");
-            }
-        );
 
-        User newUser = new User(
-            user.getUsername(),
-            user.getPassword(),
-            user.getEmail(),
-            user.getPhone(),
-            user.getRole()
+
+    public void updateProfiUser(String username, String email, String phone, String address, Long countryId, Long governorateId,
+            Long cityId, LocalDate dateOfBirth) {
+        // if user not found throw exception
+        userRepository.findByEmail(email).orElseThrow(
+            () -> new EmailExist("User not found")
         );
-        userRepository.save(newUser);
-        return newUser;
+        userRepository.updateProfiUser(username, email, phone, address, countryId, governorateId, cityId, dateOfBirth);
     }
 
     
