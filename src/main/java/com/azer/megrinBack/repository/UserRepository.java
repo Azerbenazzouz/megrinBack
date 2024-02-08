@@ -12,4 +12,6 @@ import com.azer.megrinBack.entities.User;
 public interface UserRepository extends JpaRepository<User, Long>{
     @Query("SELECT u FROM User u WHERE u.email = ?1")
     Optional<User> existsByUserEmail(String email);
+
+    Optional<User> findByEmail(String email);
 }
