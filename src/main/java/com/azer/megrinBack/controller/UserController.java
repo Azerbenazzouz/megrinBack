@@ -32,5 +32,11 @@ public class UserController {
     @PostMapping("/updateProfile")
     public void updateProfiUser(@RequestBody UserDTO userDTO) {
         userService.updateProfiUser(userDTO.getUsername(), userDTO.getEmail(), userDTO.getPhone(), userDTO.getAddress(), userDTO.getCountryId(), userDTO.getGovernorateId(), userDTO.getCityId(), userDTO.getDateOfBirth());
-    }   
+    }
+
+    // update Role User Information
+    @PostMapping("/updateRole")
+    public void updateRoleUser(@RequestBody UserDTO userDTO) {
+        userService.updateRoleUser(userDTO.getEmail(), userDTO.getRole());
+    }
 }

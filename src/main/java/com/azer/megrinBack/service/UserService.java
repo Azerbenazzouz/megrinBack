@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.azer.megrinBack.exception.EmailExist;
+import com.azer.megrinBack.entities.Role;
 import com.azer.megrinBack.entities.User;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,14 @@ public class UserService {
             () -> new EmailExist("User not found")
         );
         userRepository.updateProfiUser(username, email, phone, address, countryId, governorateId, cityId, dateOfBirth);
+    }
+
+    public void updateRoleUser(String email, Role role) {
+        // if user not found throw exception
+        userRepository.findByEmail(email).orElseThrow(
+            () -> new EmailExist("User not found")
+        );
+        userRepository.updateRoleUser(email, role);
     }
 
     
