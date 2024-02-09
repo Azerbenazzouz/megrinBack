@@ -115,6 +115,15 @@ public class User implements UserDetails{
     }
 
     public Integer getAge() {
-        return LocalDate.now().getYear() - dateOfBirth.getYear();
+        Integer year = LocalDate.now().getYear();
+        Integer month = LocalDate.now().getMonthValue();
+        Integer day = LocalDate.now().getDayOfMonth();
+        Integer yearOfBirth = dateOfBirth.getYear();
+        Integer monthOfBirth = dateOfBirth.getMonthValue();
+        Integer dayOfBirth = dateOfBirth.getDayOfMonth();
+        if (monthOfBirth > month || (monthOfBirth == month && dayOfBirth > day)) {
+            return year - yearOfBirth - 1;
+        }
+        return year - yearOfBirth;
     }
 }
